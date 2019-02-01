@@ -1,0 +1,43 @@
+html, :root, body{
+  --color: 214,173,57;
+  --header-color: rgba(var(--color), 1.0); /*background*/
+  --bright-color: rgba(var(--color), 0.50); /*background*/
+  --light-color: rgba(var(--color), 0.05); /*background*/
+  --hover-color: rgba(var(--color), 0.125); /*background on hover*/
+
+  --font-color: rgba(75, 75, 75, 0.8);
+
+  --contrast-color: rgba(106,63,24, 1.0);
+  --trans-white: rgba(255, 255, 255, 0.8);
+
+  --table-even-row-color: #f2f2f2;
+  --table-hover-row-color: #ddd;
+
+  --sz1000: 10vw;
+  --sz0800: 8.0vw;
+  --sz0300: 3.0vw;
+  --sz0250: 2.5vw;
+  --sz0200: 2.0vw;
+  --sz0150: 1.5vw;
+  --sz0125: 1.25vw;
+  --sz0100: 1.0vw;
+  --sz0075: 0.75vw;
+  --sz0050: 0.5vw;
+  --sz0045: 0.45vw;
+}
+
+@media screen and (max-width: 1000px){
+  html, :root, body{
+    --sz1000: 8vw;
+    --sz0800: 6.0vw;
+    --sz0300: 4.5vw;
+    --sz0250: 3.25vw;
+    --sz0200: 3.0vw;
+    --sz0150: 2.25vw;
+    --sz0125: 2.0vw;
+    --sz0100: 1.5vw;
+    --sz0075: 1.25vw;
+    --sz0050: 0.75vw;
+    --sz0045: 0.60vw;
+  }
+}
