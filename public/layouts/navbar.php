@@ -2,13 +2,14 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 
 $html = '
-<a class="" href="home.php">MachoMath</a>
-<a class="" href="faculty.php">Faculty</a>
-<a class="" href="subjects.php">Subjects</a>
-<a class="" href="contact.php">Contact</a>
-<a class="" href="classes.php">Classes</a>
-<a class="" href="signin.php" id="signin_for_php">Signin</a>
-';
+        <ul>
+        <li><a class="current" href="home.php">PickAFaceAndNick</a></li>
+        <li><a class="" href="pick.php">Pick</a></li>
+        <li><a class="" href="game.php">Game</a></li>
+        <li><a class="" href="contact.php">Contact</a></li>
+        <li><a class="" href="signin.php" id="signin_for_php">Signin</a></li>
+        </ul>
+        ';
 
 $dom = new DOMDocument();
 $dom->loadHTML($html);
