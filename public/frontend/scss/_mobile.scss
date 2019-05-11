@@ -1,0 +1,78 @@
+// widescreens
+@include mediaXL {
+    .projects {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// desktops and laptops
+@include mediaLG {
+    .projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// tablets
+@include mediaMD {
+    main {
+        align-items: center;
+        text-align: center;
+
+        .lg-heading {
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+    }
+
+    ul.menu-nav, div.menu-branding {
+        float: none;    //取消左右分栏
+        width: 100%;    //之前左右各50%
+        min-height: 0;
+
+        &.show {
+            transform: translate3d(0, 0, 0);   //bottom to top
+        }
+    }
+
+    .menu-nav {
+        height: 75vh;  //上下分栏
+        font-size: 20px;
+        transform: translate3d(-100%, 0, 0);  //left to right
+    }
+
+    .menu-branding {
+        height: 25vh;  //上下分栏
+        transform: translate3d(100%, 0, 0);  //right to left
+
+        .portrait {
+            background: url('../../assets/vitalimages/portrait_150.jpg');
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    .about-info {
+        grid-template-areas: 
+            'bioimage'
+            'bio'
+            'job1'
+            'job2'
+            'job3';
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+// smartphones
+@include mediaSM {
+    main#home h1 {
+        margin-top: 10vh;
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+}

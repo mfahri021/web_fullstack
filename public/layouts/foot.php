@@ -1,4 +1,4 @@
-      <footer>
+      <footer class="footer">
         <div class="container">
             <div class="footer-cols">
                 <ul>
@@ -49,14 +49,5 @@
       <script type="text/javascript" src=<?php echo "..".DS."javascript".DS."popup.js";?>></script>
       <script src="../javascript/main.js"></script>
     </div><!-- container end -->
-      
-    <!-- navbar dropdown toggle -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $(".toggle").on("click", function(){
-            $("nav ul").toggleClass("showing");
-            });
-        });
-    </script>
   </body>
 </html>

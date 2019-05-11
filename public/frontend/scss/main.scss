@@ -1,0 +1,188 @@
+@import 'config';
+@import 'menu';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include background;
+    background: $primary-color;
+    color: set-text-color($primary-color);  //_config.scss @function set-text-color($color)
+    height: 100%;
+    margin: 0;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+// headings
+h1, h2, h3 {
+    margin: 0;
+    font-weight: 400;
+
+    &.lg-heading {
+        font-size: 6rem;
+    }
+
+    &.sm-heading {
+        margin-bottom: 2rem;
+        padding: 0.2rem 1rem;
+        background: rgba(lighten($primary-color, 2), 0.5); //字背景白条
+    }
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header {
+    position: fixed;  //下面字main 挡住header
+    z-index: 2;      //up front
+    width: 100%;    //stretch across the whole screen
+}
+
+.text-secondary {
+    color: $secondary-color;
+}
+
+main {
+    padding: 4rem;
+    // height: 100%; //if content is short, footer move up in the middle
+    min-height: calc(100vh - 60px); //set sticky footer, always at the bottom
+
+    .icon {
+        margin-top: 1rem;
+
+        a {
+            padding: 0.4rem;
+
+            &:hover {
+                color: $secondary-color;
+                @include easeOut(); //()可省略
+            }
+        }
+    }
+
+    &#home {
+        overflow: hidden;   //scroll bars not on homepage
+
+        h1 {
+            margin-top: 20vh;
+        }
+    }
+}
+
+.about-info {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-areas: 
+        'bioimage bio bio'    //定义与about.html不一样
+        'job1 job2 job3';   //about里 job-1, bio-img...
+    grid-template-columns: repeat(3, 1fr);
+
+    .bio-image {    //do not have to nest all inside of .about-info
+        grid-area: bioimage;
+        margin: auto;
+        border-radius: 50%;
+        border: $secondary-color 3px solid;
+    }
+    
+    .bio {
+        grid-area: bio;
+        font-size: 1.5rem;
+    }
+    
+    .job-1 {
+        grid-area: job1;
+    }
+    .job-2 {
+        grid-area: job2;
+    }
+    .job-3 {
+        grid-area: job3;
+    }
+    
+    .job {
+        background: lighten($primary-color, 5);
+        padding: 0.5rem;
+        border-bottom: $secondary-color 5px solid;
+    }
+}
+
+// work projects
+.projects {
+    display: grid;
+    grid-gap: 0.7rem;
+    grid-template-columns: repeat(3, 1fr);
+
+    img {
+        width: 100%;
+        border: 3px #fff solid; 
+
+        &:hover {
+            opacity: 0.5;
+            border-color: $secondary-color;
+            @include easeOut;   //transition
+        }
+    }
+}
+
+// button styles
+.btn {
+    display: block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.3rem;
+    border: 0;
+
+    &:hover {
+        background: $secondary-color;
+        color: set-text-color($secondary-color);
+    }
+}
+
+.btn-dark {
+    @extend .btn;
+    background: darken($primary-color, 50);
+    color: #fff;
+}
+
+.btn-light {
+    @extend .btn;
+    background: lighten($primary-color, 50);
+    color: #333;
+}
+
+// contact page
+.cards {    //视频定义 .boxes
+    display: flex;   //也可以用 grid, different way
+    flex-wrap: wrap; //responsive
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1rem;
+
+    div {
+        font-size: 2rem;
+        border: 3px #fff solid;
+        padding: 1.5rem 2.5rem;
+        margin-bottom: 3rem;
+        @include easeOut;   //transition
+
+        &:hover {
+            padding: 0.5rem 1.5rem;  //动画：鼠标滑过，字框缩小
+            background: $secondary-color;
+            color: set-text-color($secondary-color);
+            span { color: set-text-color($secondary-color); }
+        }
+    }
+}
+
+#main-footer {
+    text-align: center;
+    padding: 1rem;
+    background: darken($primary-color, 10);
+    color: set-text-color($primary-color);
+    height: 60px;
+}
+
+@import 'mobile';

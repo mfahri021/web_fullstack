@@ -18,6 +18,31 @@
  require_once 'navbar.php';
 ?>
 
+<?php      //for sign in
+  if(isset($_POST['signin'])){
+    global $db;
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+    $type=$_POST['type'];
+    $query = "SELECT * FROM login WHERE username='$username' AND password='$password' AND type='$type'";
+    $result = $db->my_query($query);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    $count = 0;
+
+    while($row){
+      $count++;
+      if($row['username']==$username && $row['password']==$password && $row['type']=='Admin'){
+        header("Location: ../admin/admin.php");
+        echo $count;
+      } 
+      elseif($row['username']==$username && $row['password']==$password && $row['type']=='User'){
+        header("Location: ../frontend/home.php");
+      }
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -27,6 +52,7 @@
     <link rel="shortcut icon" href=<?php echo "..".DS."assets".DS."vitalimages".DS."user.png";?> type="image/x-icon">
     <link rel="stylesheet" href=<?php echo "..".DS."styles".DS."mediaflex.css";?>>
     <link rel="stylesheet" href=<?php echo "..".DS."styles".DS."master.css";?>>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src=<?php echo "..".DS."javascript".DS."pickalert.js";?>></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -44,27 +70,45 @@
     <div class="container">
       <!-- navigation -->
       <div class="wrapper">
-        <div id="overlay">
+        <div id="overlay"></div>
+        <div id="popup-content"></div>
 
-        </div>
-        
-        <div id="popup-content">
-          
-        </div>
-
-          <header>
+          <header class="navbar">
               <nav>
                   <div class="toggle"><i class="fas fa-bars"></i></div>
-                  <div class="logo"><a href="home.php"><img src="../assets/vitalimages/logo.gif" alt="logo..." width="30" height="40"></a></div>
-                  <div class="menu">
-                      <?php echo $html;?>
-                  </div>
+                  <div class="logo"><a href="../frontend/overlay.php"><img src="../assets/vitalimages/logo.gif" alt="logo..." width="30" height="40"></a></div>
+                  <div class="menu"><?php echo $html;?></div>
                   <div class="user">
                       <ul>
-                          <input type="text" name="search" placeholder="Search">
-                          <i class="fas fa-search"></i>
-                          <li><a href="#">Welcome, JiaoYan</a></li>
-                          <li><a href="signin.php">SignOut</a></li>
+                        <input id="filterInput" type="text" placeholder="Search">
+                        <a href="#portfolio"><i class="fas fa-search"></i></a>
+                        <li><a id="signinModalBtn" href="#">SignIn</a></li>
+
+                          <div id="signinModal" class="signinmodal">
+                            <div class="signinmodal-content">
+                                <div class="signinmodal-header">
+                                    <h4>Please SignIn or SignUp</h4>
+                                </div>
+                                <div class="signinmodal-body">
+                                    <form method="POST" >
+                                      <input type="email" name="email" id="email" placeholder="Email" required><br><br>
+                                      <input type="username" name="username" id="username" placeholder="Nickname" required><br><br>
+                                      <input type="password" name="password" id="password" placeholder="Password" required><br><br>
+                                      <p>
+                                        <select id = "mytype" name="type">
+                                          <option value = "User">User</option>
+                                          <option value = "Admin">Admin</option>
+                                        </select>
+                                       </p>
+                                      <!-- <input type="number" name="admin_signin_pin" placeholder="PIN" required><br><br> -->
+                                      <button type="submit" name="signin" class="signup-button">Sign In</button>
+                                      <button type="submit" name="signup" class="signup-button">Sign Up</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <li><a href="home.php">SignOut</a></li>
                       </ul>
                   </div>
               </nav>
